@@ -19,7 +19,8 @@ CAT_COLORS =
     'black',
     'grey',
     'orange',
-    'cream'
+    'cream',
+    'brown'
 ]
 
 
@@ -42,7 +43,12 @@ class Cat < ApplicationRecord
 
 
     def age
-
+        diff = (Date.today - birthdate).to_i
+        diff_year = Date.today.year - birthdate.year
+        diff_month = Date.today.month - birthdate.month
+        diff_day = Date.today.day - birthdate.day
+        
+        return "#{diff_year} years, #{diff_month} months, and #{diff_day} days old"
     end
 
 end
