@@ -1,3 +1,4 @@
+require 'action_view'
 # == Schema Information
 #
 # Table name: cats
@@ -9,6 +10,7 @@
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  name        :string           not null
 #
 
 CAT_COLORS = 
@@ -22,6 +24,8 @@ CAT_COLORS =
 
 
 class Cat < ApplicationRecord
+
+    include ActionView::Helpers::DateHelper
 
     validate :birth_date_cannot_be_future
     validates :birthdate, :color, :sex, :name, presence: true
@@ -37,6 +41,8 @@ class Cat < ApplicationRecord
     end
 
 
+    def age
 
+    end
 
 end
