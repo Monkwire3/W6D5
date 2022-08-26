@@ -5,12 +5,16 @@ class CatsController < ApplicationController
         render :index
     end 
 
+    def new
+        render :new
+    end
+
     def create
         @cat = Cat.new(cat_params)
         if @cat.save
-            render json: @cat
-        else 
-            render json: @cat.errors.full_messages, status: :unprocessable_entity
+            redirect_to cat_url(@cat)
+        else
+            render :new
         end
     end
 

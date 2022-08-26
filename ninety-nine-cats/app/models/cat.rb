@@ -35,7 +35,6 @@ class Cat < ApplicationRecord
     
 
     def birth_date_cannot_be_future
-        
         if birthdate > Date.today
             errors.add(:birthdate, "can't be in the future")
         end 
