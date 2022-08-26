@@ -23,16 +23,18 @@ CAT_COLORS =
 
 class Cat < ApplicationRecord
 
-    validates :birthdate, :color, :sex, presence: true
+    validate :birth_date_cannot_be_future
+    validates :birthdate, :color, :sex, :name, presence: true
     validates :color, inclusion:{ in: CAT_COLORS, message: "Not a valid color"}
     validates :sex, inclusion:{ in: ['M','F'], message: "Not a valid gender"}
-    validate :birth_date_cannot_be_future, on: :birthdate
+    
 
     def birth_date_cannot_be_future
-        :birthdate < Date.today
+        
+        if birthdate > Date.today
+            errors.add(:birthdate, "can't be in the future")
+        end 
     end
-
-    
 
 
 
